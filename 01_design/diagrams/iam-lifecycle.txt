@@ -1,0 +1,23 @@
+Lifecycle (Joiner / Mover / Leaver)
+
+   +---------+        +---------+        +---------+
+   | Joiner  | -----> | Mover   | -----> | Leaver  |
+   +---------+        +---------+        +---------+
+        |                  |                  |
+        v                  v                  v
+ Identity Created     Roles Updated       Identity Disabled
+ Business Role        Groups Adjusted     Groups Removed
+ Groups Assigned      Old Access Clean    Tokens/Devices Removed
+ MFA Enrollment       Audit Record         Audit Record
+ Audit Record
+
+Vendor / Guest Lifecycle (separat)
+
+   +----------+     +----------+     +-----------+
+   | Add      | --> | Review   | --> | Removal   |
+   +----------+     +----------+     +-----------+
+        |                |                |
+        v                v                v
+ Enddatum Pflicht   Validierung        Auto-Expire/
+ MFA Pflicht        Zweck/Owner        Manuelle Removal
+ Policy Scope       Audit              Audit

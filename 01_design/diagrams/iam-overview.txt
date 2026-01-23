@@ -1,0 +1,8 @@
+Retail IAM Surface (optional)
+
+ Store Users --> POS Systems --> Vendor Admins
+         \                      /
+          \----> HQ/IT <-------/
+                    |
+                    v
+                 IAM/Identity
