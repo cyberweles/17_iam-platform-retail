@@ -91,3 +91,27 @@ IAM Overview (Retail)
      Audit & Review
 ```
 
+# 17 – IAM Platform (Retail, Entra ID) (v2.0)
+
+This iteration translates the documented IAM architecture into a reproducible greenfield implementation in Azure using Terraform.
+
+## What v2.0 implements
+- **Entra ID group catalog (1:1 with the design docs):**
+  - Business Roles (BR), Application/Access groups (APP), and Policy scope groups (POL)
+- **Deterministic mappings:**
+  - BR → APP nested membership (role-to-access)
+  - BR → POL nested membership (targeting for Conditional Access policies)
+- **Azure baseline:**
+  - Resource Group + Log Analytics Workspace with a small tag baseline
+- **Azure RBAC (group-based):**
+  - `GRP_APP_AZ_BASELINE_READ` → Reader on the baseline RG
+  - `GRP_APP_AZ_BASELINE_CONTRIBUTOR` → Contributor on the baseline RG
+- **Lifecycle control:**
+  - `scripts/verify.sh` validates baseline + RBAC + key Entra groups
+  - `scripts/destroy.sh` provides a safe cleanup path
+
+## What is intentionally out of scope (for now)
+- User provisioning (joiner/mover/leaver)
+- PIM / JIT elevation flows
+- Access packages / entitlement management
+- Full landing zone (policies, budgets, networking, MG hierarchy)

@@ -1,17 +1,19 @@
-output "business_role_groups" {
-  description = "Business role groups (display name → object ID)"
+output "iam_group_ids" {
+  value       = module.iam_groups.group_ids
+  description = "Entra ID group IDs created by the iam-groups module."
+}
+
+output "baseline" {
   value = {
-    store_employee = azuread_group.br_store_employee.id
-    store_manager  = azuread_group.br_store_manager.id
-    vendor_user    = azuread_group.br_vendor_user.id
+    resource_group_name = module.baseline_rg.resource_group_name
+    resource_group_id   = module.baseline_rg.resource_group_id
+    law_id              = module.baseline_rg.law_id
   }
 }
 
-output "app_groups" {
-  description = "Application groups (display name → object ID)"
+output "rbac" {
   value = {
-    pos_user       = azuread_group.app_pos_user.id
-    pos_admin      = azuread_group.app_pos_admin.id
-    m365_store_team = azuread_group.app_m365_store_team.id
+    reader_assignment_id      = module.rbac.reader_assignment_id
+    contributor_assignment_id = module.rbac.contributor_assignment_id
   }
 }

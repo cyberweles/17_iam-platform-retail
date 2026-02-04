@@ -1,7 +1,7 @@
-variable "project_prefix" {
+variable "prefix" {
   type        = string
-  description = "Prefix for all IAM groups, e.g. IAM-RET"
-  default     = "IAM-RET"
+  description = "Global naming prefix, e.g. retail-iam"
+  default     = "retail-iam"
 }
 
 variable "environment" {

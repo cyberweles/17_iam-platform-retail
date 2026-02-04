@@ -4,9 +4,14 @@
 *.tfstate.*
 crash.log
 crash.*.log
-terraform.tfvars
-terraform.tfvars.json
-*.tfplan
+*.tfvars
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terraform local lock
+.terraform.lock.hcl
 
 # Editor / OS
 .vscode/

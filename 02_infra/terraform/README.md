@@ -84,3 +84,28 @@ terraform destroy
 This code **will create real groups** in your Azure AD tenant if you run `terraform apply`.
 
 If you only want to use it as a conceptual example for an interview, `terraform plan` is enough to demonstrate how IAM could be handled as code.
+
+
+## Runbook (local)
+
+### Prereqs
+- Azure CLI logged in: `az login`
+- Terraform >= 1.6
+- jq (WSL): `sudo apt-get install -y jq`
+
+### Deploy
+```bash
+terraform init
+terraform plan
+terraform apply
+```
+
+### Verify
+```bash
+./scripts/verify.sh
+```
+
+### Destroy
+```bash
+./scripts/destroy.sh
+```

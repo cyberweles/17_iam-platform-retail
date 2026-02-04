@@ -61,3 +61,10 @@ Am Ende soll klar erkennbar sein:
 - und **wie Teile davon als Code modelliert werden können** (Terraform).
 
 Dieses Projekt ersetzt keine produktive IAM-Lösung, sondern dient als **Denk- und Gesprächsgrundlage** für eine IAM Platform Engineer Rolle.
+
+## Implementation baseline
+- Created Entra ID role/app groups with nested membership
+- Provisioned Azure baseline: RG + Log Analytics
+- Assigned RBAC to Entra groups (Reader/Contributor) at RG scope
+- Added `verify.sh` + `destroy.sh` for lifecycle control
+- Intentionally excluded: users, PIM, policies, budgets, networking
