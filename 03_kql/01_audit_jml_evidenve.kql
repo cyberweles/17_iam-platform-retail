@@ -1,0 +1,6 @@
+AuditLogs
+| where TimeGenerated > ago(24h)
+| where Category == "GroupManagement"
+| where OperationName in ("Add member to group", "Remove member from group")
+| project TimeGenerated, OperationName, InitiatedBy, TargetResources
+| order by TimeGenerated desc

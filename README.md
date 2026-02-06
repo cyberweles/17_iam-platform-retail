@@ -115,3 +115,74 @@ This iteration translates the documented IAM architecture into a reproducible gr
 - PIM / JIT elevation flows
 - Access packages / entitlement management
 - Full landing zone (policies, budgets, networking, MG hierarchy)
+
+# 17 – IAM Platform (Retail, Entra ID) (v3.0)
+
+This iteration adds an **evidence and observability layer** on top of the Terraform-based IAM baseline.
+
+The goal of v3.0 is not to extend IAM scope, but to **prove that lifecycle decisions are visible, auditable, and explainable** using native Entra ID telemetry and KQL.
+
+## What v3.0 adds
+
+### Lifecycle evidence (JML-lite)
+- Real **Joiner / Mover / Leaver** events generated against Entra ID groups
+- Evidence collected via **AuditLogs** (group membership changes)
+- Deterministic mapping between:
+  - lifecycle action
+  - Entra operation
+  - audit record
+
+### Observability via Log Analytics (KQL)
+- Entra ID diagnostic logs routed to Log Analytics Workspace
+- KQL queries covering:
+  - group membership changes (AuditLogs)
+  - identity usage baseline (SigninLogs)
+- Queries stored as first-class artifacts under `03_kql/`
+
+### Evidence-first IAM mindset
+Instead of assuming that IAM works, this iteration answers:
+- *Who changed access?*
+- *When did lifecycle events happen?*
+- *Which business roles were affected?*
+- *Is identity access actually being used?*
+
+---
+
+## Structure additions in v3.0
+
+```text
+03_kql
+├── 00_readme.md
+├── 01_audit_jml_evidence.kql
+├── 02_audit_jml_br_filter.kql
+└── 03_signins_baseline.kql
+```
+
+## Why this matters (Platform / IAM perspective)
+
+In real-world IAM platforms:
+- Terraform defines intent
+- Audit logs prove reality
+- KQL connects the two
+
+v3.0 demonstrates how IAM decisions:
+- survive beyond design documents,
+- are observable without external SIEM tooling,
+- and can be reviewed by security, audit, and platform teams using shared evidence.
+
+### Explicit non-goals (still out of scope)
+
+- Automated user provisioning (HR → Entra)
+- PIM / Just-In-Time role elevation
+- Access Packages / Entitlement Management
+- SIEM correlation or alerting logic
+- Full Zero Trust or Landing Zone design
+
+These are intentionally excluded to keep the project focused on IAM fundamentals + evidence, not tool sprawl.
+
+## Intended audience
+
+- IAM / Identity Platform Engineers
+- Cloud / Platform Engineers working with Entra ID
+- Security engineers reviewing identity lifecycle controls
+- Recruiters and interviewers looking for realistic IAM reasoning, not demos

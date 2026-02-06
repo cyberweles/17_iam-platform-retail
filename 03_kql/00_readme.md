@@ -1,0 +1,3 @@
+- Set Time range 24h/7d, if UI shows *No results*.
+- Tables: `AuditLogs`, `SigninLogs`.
+- Purpose: Evidence for JML-lite lifecycle events and usage baseline.

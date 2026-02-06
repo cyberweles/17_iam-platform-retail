@@ -25,3 +25,9 @@ module "rbac" {
   principal_id_reader      = module.iam_groups.group_ids["GRP_APP_AZ_BASELINE_READ"]
   principal_id_contributor = module.iam_groups.group_ids["GRP_APP_AZ_BASELINE_CONTRIBUTOR"]
 }
+
+module "entra_diagnostics" {
+  source = "./modules/entra-diagnostics"
+
+  log_analytics_workspace_id = module.baseline_rg.law_id
+}

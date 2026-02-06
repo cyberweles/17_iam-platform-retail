@@ -1,0 +1,4 @@
+SigninLogs
+| where TimeGenerated > ago(24h)
+| summarize signins=count(), last_seen=max(TimeGenerated) by UserPrincipalName
+| order by last_seen desc
